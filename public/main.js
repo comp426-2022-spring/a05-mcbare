@@ -14,14 +14,14 @@ function reveal(divName) {
 async function flipCoins(event) {
     event.preventDefault();
     
-    const endpoint = "app/flip/coins/"
-    const url = document.baseURI+endpoint
+    const endpoint = "app/flip/coins/";
+    const url = document.baseURI+endpoint;
 
-    const formEvent = event.currentTarget
+    const formEvent = event.currentTarget;
 
     try {
         const formData = new FormData(formEvent);
-        const flips = await sendFlips({ url, formData });
+        const flips = await sendData({ url, formData });
 
         console.log(flips);
         document.getElementById("heads").innerHTML = "Heads: "+flips.summary.heads;
@@ -30,8 +30,32 @@ async function flipCoins(event) {
         console.log(error);
     }
 }
+
+
+// Guess a flip by clicking either heads or tails button
+async function guessFlip(event) {
+    event.preventDefault();
+    
+    const endpoint = "app/flip/call/";
+    const url = document.baseURI+endpoint;
+
+    const formEvent = event.currentTarget;
+
+    try {
+        const formData = new FormData(formEvent);
+        const results = await sendData({ url, formData });
+
+        console.log(results);
+        document.getElementById("call").innerHTML = "Call: "+ results.call;
+        document.getElementById("flip").innerHTML = "Flip: "+ results.flip;
+        document.getElementById("result").innerHTML = "Result: "+ results.result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // Create a data sender
-async function sendFlips({ url, formData }) {
+async function sendData({ url, formData }) {
     const plainFormData = Object.fromEntries(formData.entries());
     const formDataJson = JSON.stringify(plainFormData);
     console.log(formDataJson);
@@ -46,6 +70,5 @@ async function sendFlips({ url, formData }) {
     };
 
     const response = await fetch(url, options);
-    return response.json()
+    return response.json();
 }
-// Guess a flip by clicking either heads or tails button

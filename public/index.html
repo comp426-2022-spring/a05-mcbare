@@ -52,9 +52,23 @@
           <p id="heads"></p>
           <p id="tails"></p>
     </div>
+
     <div id="guess" class="hidden">
-      
+      <h1>Guess the flip</h1>
+      <form id="guessForm" onsubmit="guessFlip(event)">
+          <label for="callInput">
+              <strong>Heads or tails?</strong>
+          </label>
+          <input type="text" name="callInput" id="callInput">
+          <input type="submit" value="Flip it!">
+      </form>
+
+      <h2>Results</h2>
+          <p id="call"></p>
+          <p id="flip"></p>
+          <p id="result"></p>
     </div>
-	<script src="main.js"></script>
+
+	  <script src="main.js"></script>
   </body>
 </html>

@@ -133,7 +133,7 @@ if (log) {
 }
 
 // Multiple flips endpoint
-app.post('/app/flip/coins', (req, res, next) => {
+app.post('/app/flip/coins/', (req, res, next) => {
     var num = parseInt(req.body.number);
     var flips = coinFlips(num);
     var count = countFlips(flips);
@@ -151,8 +151,8 @@ app.post('/app/flip/', (req, res, next) => {
 });
 
 // Guess flip endpoint
-app.post('/app/flip/call/:call', (req, res, next) => {
-    const call = req.body.call;
+app.post('/app/flip/call/', (req, res, next) => {
+    const call = req.body.callInput;
     const out = flipACoin(call);
 
     res.status(200).json(out);
