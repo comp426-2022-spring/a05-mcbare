@@ -4,7 +4,7 @@
 const Database = require('better-sqlite3');
 
 // Connect to a database or create one if it doesn't exist yet.
-const logdb = new Database('log.db');
+const logdb = new Database('data/db/log.db');
 
 // Is the database initialized or do we need to initialize it?
 const stmt = logdb.prepare(`

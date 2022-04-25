@@ -48,10 +48,20 @@ if (args.help || args.h) {
     process.exit(0)
 }
 
+const home = './home.html';
+const flip_one = '';
+const flip_many = '';
+
 // Start an app server
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',port));
 });
+
+// Serve static HTML files
+app.use(express.static('./public'));
+
+// Make Express use its own built-in body parser to handle JSON
+app.use(express.json());
 
 app.use((req, res, next) => {
     let logdata = {
@@ -117,14 +127,14 @@ if (debug) {
 if (log) {
     // Use morgan for logging to files
     // Create a write stream to append (flags: 'a') to a file
-    const accessLog = fs.createWriteStream('access.log', { flags: 'a' })
+    const accessLog = fs.createWriteStream('./data/log/access.log', { flags: 'a' })
     // Set up the access logging middleware
     app.use(morgan('combined', { stream: accessLog }))
 }
 
 // Multiple flips endpoint
-app.get('/app/flips/:number', (req, res) => {
-    var num = parseInt(req.params.number);
+app.post('/app/flip/coins', (req, res, next) => {
+    var num = parseInt(req.body.number);
     var flips = coinFlips(num);
     var count = countFlips(flips);
     var out = {raw: flips, summary: count};
@@ -133,7 +143,7 @@ app.get('/app/flips/:number', (req, res) => {
 });
 
 // Single flip endpoint
-app.get('/app/flip/', (req, res) => {
+app.post('/app/flip/', (req, res, next) => {
 	const result = coinFlip();
     const out = {flip: result};
 
@@ -141,8 +151,8 @@ app.get('/app/flip/', (req, res) => {
 });
 
 // Guess flip endpoint
-app.get('/app/flip/call/:call', (req, res) => {
-    const call = req.params.call;
+app.post('/app/flip/call/:call', (req, res, next) => {
+    const call = req.body.call;
     const out = flipACoin(call);
 
     res.status(200).json(out);
