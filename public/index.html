@@ -66,11 +66,11 @@
     <div id="guess" class="hidden">
       <h1>Guess the flip</h1>
       <form id="guessForm" onsubmit="guessFlip(event)">
-          <label for="callInput">
+          <label>
               <strong>Heads or tails?</strong>
           </label>
-          <input type="text" name="callInput" id="callInput">
-          <input type="submit" value="Flip it!">
+          <button form="guessForm" type="submit" value="heads">heads</button>
+          <button form="guessForm" type="submit" value="tails">tails</button>
       </form>
 
       <h2>Results</h2>

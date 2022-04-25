@@ -152,7 +152,7 @@ app.post('/app/flip/', (req, res, next) => {
 
 // Guess flip endpoint
 app.post('/app/flip/call/', (req, res, next) => {
-    const call = req.body.callInput;
+    const call = req.body.guess;
     const out = flipACoin(call);
 
     res.status(200).json(out);

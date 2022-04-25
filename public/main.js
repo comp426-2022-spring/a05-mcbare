@@ -64,6 +64,7 @@ async function flipCoins(event) {
 // Guess a flip by clicking either heads or tails button
 async function guessFlip(event) {
     event.preventDefault();
+    let guess = event.submitter.getAttribute("value");
     
     const endpoint = "app/flip/call/";
     const url = document.baseURI+endpoint;
@@ -72,6 +73,7 @@ async function guessFlip(event) {
 
     try {
         const formData = new FormData(formEvent);
+        formData.append("guess", guess);
         const results = await sendData({ url, formData });
 
         console.log(results);
