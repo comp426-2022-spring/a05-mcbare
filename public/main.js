@@ -1,6 +1,6 @@
 // Focus div based on nav button click
 function reveal(divName) {
-    let divs = document.querySelectorAll("div");
+    let divs = document.querySelectorAll("div:not(#resultsTable)");
     divs.forEach(section => {
         section.setAttribute("class", "hidden");
     });
@@ -43,8 +43,18 @@ async function flipCoins(event) {
         const flips = await sendData({ url, formData });
 
         console.log(flips);
+
+        let coinsFlipped = "";
+        for (var i = 0; i < flips.summary.heads; i++) {
+            coinsFlipped += "<img class='smallcoin' src='./assets/img/heads.png'>"
+        }
+        for (var i = 0; i < flips.summary.tails; i++) {
+            coinsFlipped += "<img class='smallcoin' src='./assets/img/tails.png'>"
+        }
+
         document.getElementById("heads").innerHTML = "Heads: "+flips.summary.heads;
         document.getElementById("tails").innerHTML = "Tails: "+flips.summary.tails;
+        document.getElementById("resultsTable").innerHTML = coinsFlipped;
     } catch (error) {
         console.log(error);
     }
