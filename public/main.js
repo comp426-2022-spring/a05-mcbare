@@ -21,7 +21,8 @@ async function flipCoin(event) {
         const result = await sendData({ url, formData });
 
         console.log(result);
-        document.getElementById("side").innerHTML = result.flip;
+        document.getElementById("side").innerHTML = "Result: " + result.flip;
+        document.getElementById("sideImg").setAttribute("src", "./assets/img/" + result.flip + ".png");
     } catch (error) {
         console.log(error);
     }
@@ -65,7 +66,9 @@ async function guessFlip(event) {
 
         console.log(results);
         document.getElementById("call").innerHTML = "Call: "+ results.call;
+        document.getElementById("callImg").setAttribute("src", "./assets/img/" + results.call + ".png");
         document.getElementById("flip").innerHTML = "Flip: "+ results.flip;
+        document.getElementById("flipImg").setAttribute("src", "./assets/img/" + results.flip + ".png");
         document.getElementById("result").innerHTML = "Result: "+ results.result;
     } catch (error) {
         console.log(error);

@@ -35,15 +35,16 @@
     <div id="home">
       
     </div>    
-    
+
     <div id="single" class="hidden">
       <h1>Flip one coin</h1>
       <form id="singleCoin" onsubmit="flipCoin(event)">
           <input type="submit" value="Flip it">
       </form>
 
-      <h2>Results</h2>
-          <p id="side"></p>
+      <h2>Result</h2>
+          <p id="side">Result:</p>
+          <img id="sideImg" class="smallcoin" src="./assets/img/coin.png">
     </div>
 
     <div id="multi" class="hidden">
@@ -72,9 +73,11 @@
       </form>
 
       <h2>Results</h2>
-          <p id="call"></p>
-          <p id="flip"></p>
-          <p id="result"></p>
+          <p id="call">Call:</p>
+          <img id="callImg" class="smallcoin" src="./assets/img/coin.png">
+          <p id="flip">Flip:</p>
+          <img id="flipImg" class="smallcoin" src="./assets/img/coin.png">
+          <p id="result">Result:</p>
     </div>
 
 	  <script src="main.js"></script>
