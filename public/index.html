@@ -35,9 +35,17 @@
     <div id="home">
       
     </div>    
+    
     <div id="single" class="hidden">
-      
+      <h1>Flip one coin</h1>
+      <form id="singleCoin" onsubmit="flipCoin(event)">
+          <input type="submit" value="Flip it">
+      </form>
+
+      <h2>Results</h2>
+          <p id="side"></p>
     </div>
+
     <div id="multi" class="hidden">
       <h1>Flip many coins</h1>
       <form id="coins" onsubmit="flipCoins(event)">

@@ -8,6 +8,24 @@ function reveal(divName) {
 }
 
 // Flip one coin and show coin image to match result when button clicked
+async function flipCoin(event) {
+    event.preventDefault();
+    
+    const endpoint = "app/flip/";
+    const url = document.baseURI+endpoint;
+
+    const formEvent = event.currentTarget;
+
+    try {
+        const formData = new FormData(formEvent);
+        const result = await sendData({ url, formData });
+
+        console.log(result);
+        document.getElementById("side").innerHTML = result.flip;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // Flip multiple coins and show coin images in table as well as summary results
 // Enter number and press button to activate coin flip series
