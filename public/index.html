@@ -27,10 +27,10 @@
   </head>
   <body>
     <nav>
-      <button id="homenav">Home</button>
-      <button id="singlenav">Flip one coin</button>
-      <button id="multinav">Flip multiple coins</button>
-      <button id="guessnav">Guess the result</button>
+      <button id="homenav" onclick="reveal('home')">Home</button>
+      <button id="singlenav" onclick="reveal('single')">Flip one coin</button>
+      <button id="multinav" onclick="reveal('multi')">Flip multiple coins</button>
+      <button id="guessnav" onclick="reveal('guess')">Guess the result</button>
     </nav>
     <div id="home">
       
@@ -39,7 +39,18 @@
       
     </div>
     <div id="multi" class="hidden">
-      
+      <h1>Flip many coins</h1>
+      <form id="coins" onsubmit="flipCoins(event)">
+          <label for="number">
+              <strong>How many coins?</strong>
+          </label>
+          <input type="number" name="number" id="number">
+          <input type="submit" value="Flip 'em!">
+      </form>
+
+      <h2>Results</h2>
+          <p id="heads"></p>
+          <p id="tails"></p>
     </div>
     <div id="guess" class="hidden">
       
