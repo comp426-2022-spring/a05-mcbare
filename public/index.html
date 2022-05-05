@@ -27,23 +27,60 @@
   </head>
   <body>
     <nav>
-      <button id="homenav">Home</button>
-      <button id="singlenav">Flip one coin</button>
-      <button id="multinav">Flip multiple coins</button>
-      <button id="guessnav">Guess the result</button>
+      <button id="homenav" onclick="reveal('home')">Home</button>
+      <button id="singlenav" onclick="reveal('single')">Flip one coin</button>
+      <button id="multinav" onclick="reveal('multi')">Flip multiple coins</button>
+      <button id="guessnav" onclick="reveal('guess')">Guess the result</button>
     </nav>
     <div id="home">
       
     </div>    
+
     <div id="single" class="hidden">
-      
+      <h1>Flip one coin</h1>
+      <form id="singleCoin" onsubmit="flipCoin(event)">
+          <input type="submit" value="Flip it">
+      </form>
+
+      <h2>Result</h2>
+          <p id="side">Result:</p>
+          <img id="sideImg" class="smallcoin" src="./assets/img/coin.png">
     </div>
+
     <div id="multi" class="hidden">
-      
+      <h1>Flip many coins</h1>
+      <form id="coins" onsubmit="flipCoins(event)">
+          <label for="number">
+              <strong>How many coins?</strong>
+          </label>
+          <input type="number" name="number" id="number">
+          <input type="submit" value="Flip 'em!">
+      </form>
+
+      <h2>Results</h2>
+          <p id="heads"></p>
+          <p id="tails"></p>
+          <div id="resultsTable"></div>
     </div>
+
     <div id="guess" class="hidden">
-      
+      <h1>Guess the flip</h1>
+      <form id="guessForm" onsubmit="guessFlip(event)">
+          <label>
+              <strong>Heads or tails?</strong>
+          </label>
+          <button form="guessForm" type="submit" value="heads">heads</button>
+          <button form="guessForm" type="submit" value="tails">tails</button>
+      </form>
+
+      <h2>Results</h2>
+          <p id="call">Call:</p>
+          <img id="callImg" class="smallcoin" src="./assets/img/coin.png">
+          <p id="flip">Flip:</p>
+          <img id="flipImg" class="smallcoin" src="./assets/img/coin.png">
+          <p id="result">Result:</p>
     </div>
-	<script src="main.js"></script>
+
+	  <script src="main.js"></script>
   </body>
 </html>
